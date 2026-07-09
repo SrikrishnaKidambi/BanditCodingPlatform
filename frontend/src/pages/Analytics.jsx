@@ -212,7 +212,7 @@ export default function Analytics() {
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 
         {/* Competency Heatmap */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6">
+        <div className="bg-white/20 dark:bg-white/5 rounded-xl border border-white/30 dark:border-white/10 shadow-sm backdrop-blur-md p-6">
           <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Competency Heatmap</h2>
           <p className="text-xs text-gray-400 dark:text-gray-500 mb-5">
             Current Bayesian mastery estimate per arm
@@ -224,7 +224,7 @@ export default function Analytics() {
         </div>
 
         {/* Mode Distribution */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6">
+        <div className="bg-white/20 dark:bg-white/5 rounded-xl border border-white/30 dark:border-white/10 shadow-sm backdrop-blur-md p-6">
           <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">
             Mode Distribution
           </h2>
@@ -258,7 +258,7 @@ export default function Analytics() {
         </div>
 
         {/* Learning Trajectory */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6 md:col-span-2">
+        <div className="bg-white/20 dark:bg-white/5 rounded-xl border border-white/30 dark:border-white/10 shadow-sm backdrop-blur-md p-6 md:col-span-2">
           <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">Learning Trajectory</h2>
           <p className="text-xs text-gray-400 dark:text-gray-500 mb-5">
             Daily success rate (solved / attempted) over time
@@ -267,7 +267,7 @@ export default function Analytics() {
         </div>
 
         {/* Arm Selection Frequency */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6">
+        <div className="bg-white/20 dark:bg-white/5 rounded-xl border border-white/30 dark:border-white/10 shadow-sm backdrop-blur-md p-6">
           <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">
             Arm Selection Frequency
           </h2>
@@ -295,7 +295,7 @@ export default function Analytics() {
         </div>
 
         {/* Revision Statistics */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6">
+        <div className="bg-white/20 dark:bg-white/5 rounded-xl border border-white/30 dark:border-white/10 shadow-sm backdrop-blur-md p-6">
           <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-1">
             Revision Statistics
           </h2>

@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import { useTheme } from '../context/ThemeContext'
 import { useAuth } from '../context/AuthContext'
+import SkyBackground from '../components/SkyBackground'
 
 export default function Login() {
-  const { dark, toggle } = useTheme()
   const { login, register } = useAuth()
 
-  const [mode, setMode]         = useState('login')   // 'login' | 'register'
+  const [mode, setMode]         = useState('login')
   const [name, setName]         = useState('')
   const [email, setEmail]       = useState('')
   const [password, setPassword] = useState('')
@@ -32,30 +31,26 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center px-4">
-      <button
-        onClick={toggle}
-        className="fixed top-4 right-4 text-sm text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-      >
-        {dark ? '☀ Light' : '🌙 Dark'}
-      </button>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <SkyBackground />
 
-      <div className="w-full max-w-sm">
+      <div className="relative z-10 w-full max-w-sm">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-indigo-600">BanditLearn</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1 text-sm">Adaptive Coding Practice</p>
+          <h1 className="text-4xl font-bold text-white tracking-tight">Code Compass</h1>
+          <p className="text-indigo-200/70 mt-2 text-sm">Learn Coding Smarter</p>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-8">
-          <div className="flex gap-1 mb-6 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+        <div className="bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-8">
+          {/* Tab toggle */}
+          <div className="flex gap-1 mb-6 bg-white/10 rounded-lg p-1">
             {['login', 'register'].map(m => (
               <button
                 key={m}
                 onClick={() => { setMode(m); setError('') }}
-                className={`flex-1 text-sm font-medium py-1.5 rounded-md transition-colors capitalize ${
+                className={`flex-1 text-sm font-medium py-1.5 rounded-md transition-all duration-200 capitalize ${
                   mode === m
-                    ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-gray-100 shadow-sm'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                    ? 'bg-white/20 text-white shadow-sm'
+                    : 'text-white/50 hover:text-white/80'
                 }`}
               >
                 {m === 'login' ? 'Sign In' : 'Register'}
@@ -66,47 +61,47 @@ export default function Login() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === 'register' && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Full Name</label>
+                <label className="block text-sm font-medium text-white/80 mb-1">Full Name</label>
                 <input
                   type="text"
                   value={name}
                   onChange={e => setName(e.target.value)}
                   placeholder="Your name"
-                  className="w-full border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2.5 text-sm text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
                 />
               </div>
             )}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+              <label className="block text-sm font-medium text-white/80 mb-1">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2.5 text-sm text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Password</label>
+              <label className="block text-sm font-medium text-white/80 mb-1">Password</label>
               <input
                 type="password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-2.5 text-sm text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent"
               />
             </div>
 
             {error && (
-              <p className="text-sm text-red-500 dark:text-red-400">{error}</p>
+              <p className="text-sm text-red-300">{error}</p>
             )}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-indigo-600 text-white rounded-lg py-2.5 text-sm font-semibold hover:bg-indigo-700 disabled:opacity-50 transition-colors mt-2"
+              className="w-full bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg py-2.5 text-sm font-semibold disabled:opacity-50 transition-all duration-200 mt-2 shadow-lg shadow-indigo-900/40"
             >
               {loading ? 'Please wait…' : mode === 'login' ? 'Sign In' : 'Create Account'}
             </button>

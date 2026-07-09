@@ -43,7 +43,7 @@ export default function Profile() {
         </button>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6 flex items-center gap-5 mb-6">
+      <div className="bg-white/20 dark:bg-white/5 rounded-xl border border-white/30 dark:border-white/10 shadow-sm backdrop-blur-md p-6 flex items-center gap-5 mb-6">
         <div className="w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center shrink-0">
           <span className="text-xl font-bold text-white">{initials(profile.name)}</span>
         </div>
@@ -61,17 +61,15 @@ export default function Profile() {
         <StatCard label="Topics Studied"  value={profile.topicsActive}      sub="of 5 total topics"                        color="purple" />
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6">
+      <div className="bg-white/20 dark:bg-white/5 rounded-xl border border-white/30 dark:border-white/10 shadow-sm backdrop-blur-md p-6">
         <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4">Account Details</h3>
         <div className="space-y-3 text-sm">
           {[
             { label: 'Full Name',  value: profile.name },
             { label: 'Email',      value: profile.email },
             { label: 'Joined',     value: profile.joinDate },
-            { label: 'Algorithm',  value: 'Educational Thompson Sampling' },
-            { label: 'Backend',    value: 'Node.js + Express + MySQL' },
           ].map(({ label, value }) => (
-            <div key={label} className="flex justify-between border-b border-gray-50 dark:border-gray-700 pb-3 last:border-0 last:pb-0">
+            <div key={label} className="flex justify-between border-b border-gray-50 dark:border-white/10 pb-3 last:border-0 last:pb-0">
               <span className="text-gray-400 dark:text-gray-500">{label}</span>
               <span className="text-gray-700 dark:text-gray-300 font-medium">{value}</span>
             </div>

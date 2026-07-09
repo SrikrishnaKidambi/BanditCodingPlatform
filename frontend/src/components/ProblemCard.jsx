@@ -1,3 +1,5 @@
+import { useTilt } from '../hooks/useTilt'
+
 const difficultyStyle = {
   Easy:   'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
   Medium: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
@@ -11,10 +13,17 @@ const modeConfig = {
 }
 
 export default function ProblemCard({ problem, showReason = false }) {
+  const { ref, onMouseMove, onMouseLeave } = useTilt(4)
   const mode = modeConfig[problem.mode] ?? modeConfig.learning
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6">
+    <div
+      ref={ref}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      style={{ transition: 'transform 0.15s ease, box-shadow 0.15s ease' }}
+      className="bg-white/20 dark:bg-white/5 rounded-xl border border-white/30 dark:border-white/10 shadow-sm dark:shadow-none backdrop-blur-md p-6 cursor-default will-change-transform"
+    >
       <div className="flex items-center gap-2 mb-3 flex-wrap">
         <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${mode.style}`}>
           {mode.label}

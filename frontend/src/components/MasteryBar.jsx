@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 function barColor(mastery) {
   if (mastery >= 0.7) return 'bg-green-500'
   if (mastery >= 0.4) return 'bg-yellow-400'
@@ -16,17 +18,23 @@ function getStrength(mastery) {
   return strengthConfig.weak
 }
 
-export default function MasteryBar({ difficulty, mastery }) {
+export default function MasteryBar({ difficulty, mastery, index = 0 }) {
   const pct = Math.round(mastery * 100)
   const strength = getStrength(mastery)
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    const t = setTimeout(() => setWidth(pct), 80 + index * 120)
+    return () => clearTimeout(t)
+  }, [pct, index])
 
   return (
     <div className="flex items-center gap-4">
       <span className="w-16 text-sm text-gray-500 dark:text-gray-400 text-right shrink-0">{difficulty}</span>
-      <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded-full h-2.5">
+      <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
         <div
-          className={`h-2.5 rounded-full ${barColor(mastery)} transition-all duration-500`}
-          style={{ width: `${pct}%` }}
+          className={`h-2.5 rounded-full ${barColor(mastery)}`}
+          style={{ width: `${width}%`, transition: 'width 0.7s cubic-bezier(0.4,0,0.2,1)' }}
         />
       </div>
       <span className="w-10 text-sm font-semibold text-gray-700 dark:text-gray-300 shrink-0">{pct}%</span>

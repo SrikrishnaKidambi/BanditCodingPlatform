@@ -88,7 +88,7 @@ export default function Dashboard() {
         {history.length === 0 ? (
           <p className="text-sm text-gray-400 dark:text-gray-500">No attempts yet — start practising!</p>
         ) : (
-          <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm divide-y divide-gray-50 dark:divide-gray-700">
+          <div className="bg-white/20 dark:bg-white/5 rounded-xl border border-white/30 dark:border-white/10 shadow-sm backdrop-blur-md divide-y divide-gray-50 dark:divide-gray-700">
             {history.map(entry => (
               <div key={entry.problem_id + entry.date} className="flex items-center justify-between px-5 py-3.5">
                 <div>

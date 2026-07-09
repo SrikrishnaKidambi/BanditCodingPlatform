@@ -4,6 +4,17 @@
 
 @layer base {
   html {
-    @apply bg-gray-50 dark:bg-gray-900;
+    @apply bg-gray-50 dark:bg-[#000308];
   }
 }
+
+@layer utilities {
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-4000 { animation-delay: 4s; }
+  .bg-300\% { background-size: 300% 300%; }
+  .will-change-transform { will-change: transform; }
+}
+
+/* Darken light-gray text in day mode so it stays readable on transparent glass cards */
+html:not(.dark) .text-gray-400 { color: #4b5563; } /* → gray-600 */
+html:not(.dark) .text-gray-500 { color: #374151; } /* → gray-700 */

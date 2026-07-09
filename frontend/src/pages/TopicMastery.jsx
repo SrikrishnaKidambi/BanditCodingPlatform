@@ -50,7 +50,7 @@ export default function TopicMastery() {
           const key = getStrengthKey(avg)
 
           return (
-            <div key={topic} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm p-6">
+            <div key={topic} className="bg-white/20 dark:bg-white/5 rounded-xl border border-white/30 dark:border-white/10 shadow-sm backdrop-blur-md p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">{topic}</h2>
                 <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${strengthStyle[key]}`}>
@@ -58,8 +58,8 @@ export default function TopicMastery() {
                 </span>
               </div>
               <div className="space-y-3">
-                {arms.map(arm => (
-                  <MasteryBar key={arm.difficulty} difficulty={arm.difficulty} mastery={arm.mastery} />
+                {arms.map((arm, i) => (
+                  <MasteryBar key={arm.difficulty} difficulty={arm.difficulty} mastery={arm.mastery} index={i} />
                 ))}
               </div>
             </div>

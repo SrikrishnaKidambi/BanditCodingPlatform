@@ -189,10 +189,80 @@ Every solved/failed mark shifts those Beta distributions, so the engine continuo
 
 ---
 
-## To Be Implemented
+## Progress by Phase
 
-### Phase 6 — Analytics
-Build richer explainable dashboards: learning trajectory over time, competency heatmap across all arms, recommendation diversity score, revision statistics, and a "why was this recommended?" explanation shown inline on each problem card.
+### Phase 0 — Project Planning ✅
+- Finalised project vision and educational objective
+- Defined tech stack (React, Node.js, Python, MySQL)
+- Designed arm representation: 10 arms across 5 topics × 2 difficulties
+- Defined 70/20/10 recommendation policy
+- Defined folder structure and development roadmap
+
+### Phase 1 — Recommendation Engine ✅
+- Implemented Thompson Sampling core (`bandit.py`)
+- Bayesian Beta distribution posterior updates per arm
+- 70/20/10 educational recommendation policy (learning / weak / revision)
+- Recency penalty to prevent repeatedly recommending the same arm
+- Diversity pool for weak and revision selection
+- Simulated users with configurable true skill levels (`users.py`)
+- Full simulation harness with 500-iteration runs (`simulation.py`)
+- matplotlib visualisations: arm selection, cumulative rewards, posterior means, mode distribution (`visualization.py`)
+
+### Phase 2 — Problem Repository ✅
+- Curated `data/problems.json` with real problems across all 5 topics × 2 difficulties
+- Each problem has: id, title, topic, difficulty, tags, platform, URL, estimated solving time
+- `JSONProblemRepository` with `get_problem(arm, seen_ids)` to avoid repeating problems (`repository.py`)
+
+### Phase 3 — Adaptive Recommendation Engine ✅
+- Cold-start assessment: comfort rating (1–4) per arm initialises personalised Bayesian priors (`coldstart.py`)
+- Topic hierarchy propagation: Easy mastery blended into Medium priors at initialisation
+- Mastery estimation: posterior mean, confidence, tier classification per arm (`competency.py`)
+- Adaptive difficulty progression: when Easy arm ≥ 75% mastery, Medium arm receives a score bonus in `select_arm()` — engine automatically advances difficulty
+- Recommendation history persistence: alpha/beta state and history saved to `data/users/{user_id}.json` across sessions (`session.py`)
+- Real user interactive CLI session: `python main.py --session`
+
+### Phase 4 — Backend ✅
+- Python FastAPI microservice on port 8000 (`src/api.py`):
+  - `POST /assess` — initialise Bandit from cold-start ratings
+  - `GET /recommend/{user_id}` — Thompson Sampling recommendation + reason text
+  - `POST /submit` — update Bandit posteriors, persist state
+  - `GET /mastery/{user_id}` — full competency profile per arm
+  - `GET /stats/{user_id}` — arm counts, diversity score, weakest/strongest
+- Node.js / Express backend on port 3001 (`backend/`):
+  - JWT authentication (register + login)
+  - All routes protected by auth middleware
+  - Proxies recommendation calls to Python microservice
+  - MySQL for user accounts and submission history
+  - `GET /api/trajectory` — daily success rate time series
+  - `GET /api/stats` — mode counts, revision breakdown, diversity score
+  - `GET /api/profile` — live stats including streak calculation
+- MySQL schema: `users` table + `submissions` table (`backend/database/schema.sql`)
+
+### Phase 5 — Frontend ✅
+- All 7 pages wired to real API — zero mock data remaining
+- JWT stored in localStorage, attached to every request via axios interceptor
+- Auto-redirect to `/login` on 401
+- **Login page** — sign in / register toggle with real auth and inline error messages
+- **Cold Start page** — 10-arm comfort rating form, posts to `/api/assess`, redirects to Dashboard
+- **Dashboard** — live stats, today's recommendation with mode badge and reason text, recent activity
+- **Recommended Problem** — full solve/fail loop: loads recommendation → mark outcome → updates Bandit → loads next
+- **Practice History** — live from MySQL, client-side search filter
+- **Topic Mastery** — live Bayesian mastery bars from Python microservice
+- **Analytics** — live mode distribution, arm frequency, key insights
+- **Profile** — live stats, streak, sign out button
+- `AuthContext` for global auth state, `ProtectedRoute` for guarded pages
+
+### Phase 6 — Analytics ✅
+- **"Why this problem?" reason text** — Python microservice generates a plain-English explanation for every recommendation based on arm mastery and mode; shown as blue highlighted line on Dashboard and Recommended Problem
+- **Competency Heatmap** — 5×2 color grid (topics × Easy/Medium) with live mastery percentages; color scale from red (< 25%) to dark green (≥ 70%)
+- **Learning Trajectory** — SVG line chart of daily success rate over time; pulled from new `/api/trajectory` endpoint querying MySQL by calendar day
+- **Diversity Score** — Shannon entropy of arm selection counts normalised to 0–100%; shown as a stat tile in Analytics
+- **Revision Statistics** — per-topic count of how many times each topic was scheduled for spaced repetition; pulled from MySQL submissions filtered by mode = revision
+- **Mode + reason fix** — `mode` badge and `reason` text now correctly flow from the API into `ProblemCard` on both Dashboard and Recommended Problem pages
+
+---
+
+## To Be Implemented
 
 ### Phase 7 — Research Enhancements
 Extend the core engine with forgetting curves (mastery decays if a topic is untouched for too long), contextual Thompson Sampling (factor in time of day, session length, hint usage), continuous rewards (partial credit instead of binary solved/failed), and confidence-aware difficulty adaptation.
@@ -201,4 +271,4 @@ Extend the core engine with forgetting curves (mastery decays if a topic is unto
 Benchmark Educational Thompson Sampling against Random, Standard Thompson Sampling, Epsilon-Greedy, and UCB baselines using the simulation framework — measure learning efficiency, recommendation diversity, competency improvement rate, and topic coverage; document all experiments.
 
 ### Phase 9 — Deployment
-Deploy the full stack: React frontend to Vercel, Node.js backend to Render or Railway, MySQL to Neon PostgreSQL or Railway MySQL, Python microservice as a separate service — plus architecture diagrams, a demo video, and full GitHub documentation.
+Deploy the full stack: React frontend to Vercel, Node.js backend to Render or Railway, MySQL to Railway MySQL, Python microservice as a separate Render service — fix file-based session storage before deploying (persistent volume or DB-backed state). See `deployIns.md` for step-by-step instructions.
