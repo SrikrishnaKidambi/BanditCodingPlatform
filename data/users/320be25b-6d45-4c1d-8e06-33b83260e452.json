@@ -1,0 +1,69 @@
+{
+  "user_id": "320be25b-6d45-4c1d-8e06-33b83260e452",
+  "last_updated": "2026-07-09T20:21:47.819899+00:00",
+  "bandit_state": {
+    "Arrays_Easy": {
+      "alpha": 5,
+      "beta": 4
+    },
+    "Arrays_Medium": {
+      "alpha": 2,
+      "beta": 6
+    },
+    "BinarySearch_Easy": {
+      "alpha": 8,
+      "beta": 2
+    },
+    "BinarySearch_Medium": {
+      "alpha": 3,
+      "beta": 6
+    },
+    "Trees_Easy": {
+      "alpha": 2,
+      "beta": 6
+    },
+    "Trees_Medium": {
+      "alpha": 2,
+      "beta": 7
+    },
+    "Graphs_Easy": {
+      "alpha": 9,
+      "beta": 2
+    },
+    "Graphs_Medium": {
+      "alpha": 6,
+      "beta": 5
+    },
+    "DP_Easy": {
+      "alpha": 9,
+      "beta": 3
+    },
+    "DP_Medium": {
+      "alpha": 3,
+      "beta": 5
+    }
+  },
+  "recommendation_history": [
+    "Trees_Medium",
+    "BinarySearch_Medium",
+    "Graphs_Easy",
+    "Arrays_Easy",
+    "Trees_Easy",
+    "DP_Medium",
+    "DP_Easy",
+    "BinarySearch_Medium",
+    "Graphs_Easy",
+    "DP_Easy",
+    "Graphs_Medium",
+    "Trees_Medium",
+    "DP_Easy",
+    "Arrays_Easy",
+    "Graphs_Medium",
+    "DP_Easy",
+    "Trees_Easy",
+    "Arrays_Easy",
+    "Arrays_Medium",
+    "DP_Easy",
+    "Graphs_Medium"
+  ]
+}
