@@ -1,8 +1,32 @@
 import json
 import os
 import random
+import urllib.error
+import urllib.request
 from abc import ABC, abstractmethod
 from collections import defaultdict
+
+BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:3001")
+BACKEND_INTERNAL_TOKEN = os.environ.get("BACKEND_INTERNAL_TOKEN", "")
+
+
+def _internal_headers():
+    headers = {"Accept": "application/json"}
+    if BACKEND_INTERNAL_TOKEN:
+        headers["x-internal-token"] = BACKEND_INTERNAL_TOKEN
+    return headers
+
+
+def _get_backend_json(path):
+    try:
+        url = f"{BACKEND_URL.rstrip('/')}/{path.lstrip('/')}"
+        req = urllib.request.Request(url, headers=_internal_headers())
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            if resp.status != 200:
+                return None
+            return json.loads(resp.read().decode("utf-8"))
+    except (urllib.error.URLError, urllib.error.HTTPError, ValueError):
+        return None
 
 
 class BaseProblemRepository(ABC):
@@ -38,8 +62,44 @@ class JSONProblemRepository(BaseProblemRepository):
             base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
             data_path = os.path.join(base_dir, "data", "problems.json")
 
-        with open(data_path, "r") as f:
-            self.problems = json.load(f)
+        self.problems = self._load_problems_from_backend()
+        if self.problems is None:
+            raise RuntimeError("Failed to load problems from backend DB.")
+
+    def _normalise_problem_row(self, row):
+        if not isinstance(row, dict):
+            return None
+        tags = row.get("tags")
+        if isinstance(tags, str):
+            try:
+                tags = json.loads(tags)
+            except (TypeError, ValueError):
+                tags = []
+        elif tags is None:
+            tags = []
+
+        return {
+            "problem_id": row.get("problem_id") or row.get("id"),
+            "title": row.get("title", ""),
+            "topic": row.get("topic", ""),
+            "difficulty": row.get("difficulty", ""),
+            "tags": tags,
+            "platform": row.get("platform", ""),
+            "url": row.get("url", ""),
+            "estimated_solving_time": row.get("estimated_solving_time", 20),
+        }
+
+    def _load_problems_from_backend(self):
+        data = _get_backend_json('/api/internal/problems')
+        if not data:
+            return None
+        return [
+            normalized
+            for normalized in (
+                self._normalise_problem_row(row) for row in data
+            )
+            if normalized is not None
+        ]
 
     def get_problems_for_arm(self, arm):
         topic, difficulty = arm

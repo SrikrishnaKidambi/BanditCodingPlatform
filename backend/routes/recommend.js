@@ -1,9 +1,22 @@
 const router = require('express').Router()
 const axios  = require('axios')
+const fs     = require('fs')
+const path   = require('path')
 const db     = require('../config/db')
 const auth   = require('../middleware/auth')
 
 const py = () => process.env.PYTHON_SERVICE_URL || 'http://localhost:8000'
+const TOPICS_PATH = path.join(__dirname, '../../data/topics.json')
+
+router.get('/topics', auth, async (req, res) => {
+  try {
+    const data = JSON.parse(fs.readFileSync(TOPICS_PATH, 'utf8'))
+    res.json(data)
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).json({ error: 'Topics fetch failed' })
+  }
+})
 
 // POST /api/assess  — cold-start ratings from the frontend
 router.post('/assess', auth, async (req, res) => {
@@ -127,6 +140,34 @@ router.get('/trajectory', auth, async (req, res) => {
   } catch (err) {
     console.error(err)
     res.status(500).json({ error: 'Trajectory fetch failed' })
+  }
+})
+
+// POST /api/progress/reset — wipes all submissions and Bandit state
+router.post('/progress/reset', auth, async (req, res) => {
+  try {
+    await db.query('DELETE FROM submissions WHERE user_id = ?', [req.user.user_id])
+    await axios.post(`${py()}/reset/${req.user.user_id}`)
+    res.json({ status: 'ok' })
+  } catch (err) {
+    console.error(err.response?.data || err.message)
+    res.status(500).json({ error: 'Reset failed' })
+  }
+})
+
+// POST /api/progress/reset-arm — resets priors for a single (topic, difficulty) arm
+router.post('/progress/reset-arm', auth, async (req, res) => {
+  const { topic, difficulty, rating } = req.body
+  if (!topic || !difficulty || !rating)
+    return res.status(400).json({ error: 'topic, difficulty, rating required' })
+  try {
+    await axios.post(`${py()}/reset-arm`, {
+      user_id: req.user.user_id, topic, difficulty, rating,
+    })
+    res.json({ status: 'ok' })
+  } catch (err) {
+    console.error(err.response?.data || err.message)
+    res.status(500).json({ error: 'Arm reset failed' })
   }
 })
 

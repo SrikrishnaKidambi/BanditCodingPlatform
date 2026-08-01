@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
-import { userAPI } from '../services/api'
+import { topicsAPI, userAPI } from '../services/api'
 
-const TOPICS = ['Arrays', 'BinarySearch', 'Trees', 'Graphs', 'DP']
+const DEFAULT_TOPICS = ['Arrays', 'BinarySearch', 'Trees', 'Graphs', 'DP']
 
 const modeConfig = {
   learning: { label: 'Learning Zone', color: 'bg-blue-500',   target: '70%' },
   weak:     { label: 'Weak Topic',    color: 'bg-orange-400', target: '20%' },
   revision: { label: 'Revision',      color: 'bg-purple-500', target: '10%' },
+}
+
+function formatArmLabel(label) {
+  return label.replace(/-(Easy|Medium|Hard)$/, '')
 }
 
 function heatColor(value) {
@@ -17,7 +21,7 @@ function heatColor(value) {
   return 'bg-red-400 text-white'
 }
 
-function CompetencyHeatmap({ mastery }) {
+function CompetencyHeatmap({ mastery, topics }) {
   const lookup = {}
   mastery.forEach(m => { lookup[`${m.topic}_${m.difficulty}`] = m.mastery })
 
@@ -27,16 +31,16 @@ function CompetencyHeatmap({ mastery }) {
         <thead>
           <tr>
             <th className="text-left text-xs text-gray-400 dark:text-gray-500 font-medium pb-3 w-32">Topic</th>
-            {['Easy', 'Medium'].map(d => (
+            {['Easy', 'Medium', 'Hard'].map(d => (
               <th key={d} className="text-center text-xs text-gray-400 dark:text-gray-500 font-medium pb-3 px-3">{d}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {TOPICS.map(topic => (
+          {topics.map(topic => (
             <tr key={topic}>
               <td className="text-xs text-gray-700 dark:text-gray-300 font-medium pr-4 py-1.5">{topic}</td>
-              {['Easy', 'Medium'].map(diff => {
+              {['Easy', 'Medium', 'Hard'].map(diff => {
                 const val = lookup[`${topic}_${diff}`] ?? 0
                 return (
                   <td key={diff} className="px-3 py-1.5 text-center">
@@ -139,14 +143,17 @@ export default function Analytics() {
   const [stats,      setStats]      = useState(null)
   const [mastery,    setMastery]    = useState([])
   const [trajectory, setTrajectory] = useState([])
+  const [topics,     setTopics]     = useState(DEFAULT_TOPICS)
   const [loading,    setLoading]    = useState(true)
 
   useEffect(() => {
-    Promise.all([userAPI.stats(), userAPI.mastery(), userAPI.trajectory()])
-      .then(([s, m, t]) => {
+    Promise.all([userAPI.stats(), userAPI.mastery(), userAPI.trajectory(), topicsAPI.get()])
+      .then(([s, m, t, tp]) => {
         setStats(s.data)
         setMastery(m.data)
         setTrajectory(t.data)
+        const nextTopics = Array.isArray(tp.data?.topics) && tp.data.topics.length > 0 ? tp.data.topics : DEFAULT_TOPICS
+        setTopics(nextTopics)
       })
       .catch(() => {})
       .finally(() => setLoading(false))
@@ -189,14 +196,14 @@ export default function Analytics() {
         <div className="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-4">
           <p className="text-xs font-semibold text-orange-600 dark:text-orange-400 uppercase tracking-wide">Weakest Topic</p>
           <p className="text-xl font-bold text-orange-700 dark:text-orange-300 mt-1 truncate">
-            {weakest.replace('-Easy','').replace('-Medium','')}
+            {formatArmLabel(weakest)}
           </p>
           <p className="text-xs text-orange-500 dark:text-orange-400 mt-1">Needs attention</p>
         </div>
         <div className="bg-green-50 dark:bg-green-900/20 rounded-xl p-4">
           <p className="text-xs font-semibold text-green-600 dark:text-green-400 uppercase tracking-wide">Strongest Topic</p>
           <p className="text-xl font-bold text-green-700 dark:text-green-300 mt-1 truncate">
-            {strongest.replace('-Easy','').replace('-Medium','')}
+            {formatArmLabel(strongest)}
           </p>
           <p className="text-xs text-green-500 dark:text-green-400 mt-1">Excellent</p>
         </div>
@@ -219,7 +226,7 @@ export default function Analytics() {
           </p>
           {mastery.length === 0
             ? <p className="text-sm text-gray-400 dark:text-gray-500">No data yet.</p>
-            : <CompetencyHeatmap mastery={mastery} />
+            : <CompetencyHeatmap mastery={mastery} topics={topics} />
           }
         </div>
 
@@ -306,7 +313,7 @@ export default function Analytics() {
             <p className="text-sm text-gray-400 dark:text-gray-500">No revision sessions yet.</p>
           ) : (
             <div className="space-y-3">
-              {TOPICS.map(topic => {
+              {topics.map(topic => {
                 const count = revisionByTopic[topic] || 0
                 const maxRev = Math.max(...Object.values(revisionByTopic), 1)
                 return (

@@ -1,0 +1,13 @@
+{
+  "user_id": "db-user",
+  "last_updated": "2026-08-01T07:47:59.966026+00:00",
+  "bandit_state": {
+    "Arrays_Easy": {
+      "alpha": 2,
+      "beta": 3
+    }
+  },
+  "recommendation_history": [
+    "Arrays_Easy"
+  ]
+}

@@ -4,469 +4,351 @@
     "title": "Two Sum",
     "topic": "Arrays",
     "difficulty": "Easy",
-    "tags": ["hash-map", "array"],
+    "tags": [
+      "hash-map",
+      "array"
+    ],
     "platform": "LeetCode",
     "url": "https://leetcode.com/problems/two-sum/",
     "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "ARR-E-002",
-    "title": "Best Time to Buy and Sell Stock",
-    "topic": "Arrays",
-    "difficulty": "Easy",
-    "tags": ["array", "greedy"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
-    "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "ARR-E-003",
-    "title": "Contains Duplicate",
-    "topic": "Arrays",
-    "difficulty": "Easy",
-    "tags": ["hash-set", "array", "sorting"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/contains-duplicate/",
-    "estimated_solving_time": 10
-  },
-  {
-    "problem_id": "ARR-E-004",
-    "title": "Move Zeroes",
-    "topic": "Arrays",
-    "difficulty": "Easy",
-    "tags": ["two-pointers", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/move-zeroes/",
-    "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "ARR-E-005",
-    "title": "Running Sum of 1d Array",
-    "topic": "Arrays",
-    "difficulty": "Easy",
-    "tags": ["prefix-sum", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/running-sum-of-1d-array/",
-    "estimated_solving_time": 10
   },
   {
     "problem_id": "ARR-M-001",
     "title": "3Sum",
     "topic": "Arrays",
     "difficulty": "Medium",
-    "tags": ["two-pointers", "sorting", "array"],
+    "tags": [
+      "two-pointers",
+      "sorting",
+      "array"
+    ],
     "platform": "LeetCode",
     "url": "https://leetcode.com/problems/3sum/",
     "estimated_solving_time": 35
   },
   {
-    "problem_id": "ARR-M-002",
-    "title": "Product of Array Except Self",
+    "problem_id": "ARR-E-002",
+    "title": "Best Time to Buy and Sell Stock",
     "topic": "Arrays",
-    "difficulty": "Medium",
-    "tags": ["prefix-sum", "array"],
+    "difficulty": "Easy",
+    "tags": [
+      "array",
+      "greedy"
+    ],
     "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/product-of-array-except-self/",
-    "estimated_solving_time": 30
-  },
-  {
-    "problem_id": "ARR-M-003",
-    "title": "Maximum Product Subarray",
-    "topic": "Arrays",
-    "difficulty": "Medium",
-    "tags": ["dynamic-programming", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/maximum-product-subarray/",
-    "estimated_solving_time": 30
-  },
-  {
-    "problem_id": "ARR-M-004",
-    "title": "Container With Most Water",
-    "topic": "Arrays",
-    "difficulty": "Medium",
-    "tags": ["two-pointers", "greedy"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/container-with-most-water/",
-    "estimated_solving_time": 25
-  },
-  {
-    "problem_id": "ARR-M-005",
-    "title": "Subarray Sum Equals K",
-    "topic": "Arrays",
-    "difficulty": "Medium",
-    "tags": ["prefix-sum", "hash-map", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/subarray-sum-equals-k/",
-    "estimated_solving_time": 35
+    "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+    "estimated_solving_time": 15
   },
   {
     "problem_id": "BS-E-001",
     "title": "Binary Search",
     "topic": "BinarySearch",
     "difficulty": "Easy",
-    "tags": ["binary-search", "array"],
+    "tags": [
+      "binary-search",
+      "array"
+    ],
     "platform": "LeetCode",
     "url": "https://leetcode.com/problems/binary-search/",
     "estimated_solving_time": 10
-  },
-  {
-    "problem_id": "BS-E-002",
-    "title": "Search Insert Position",
-    "topic": "BinarySearch",
-    "difficulty": "Easy",
-    "tags": ["binary-search", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/search-insert-position/",
-    "estimated_solving_time": 10
-  },
-  {
-    "problem_id": "BS-E-003",
-    "title": "First Bad Version",
-    "topic": "BinarySearch",
-    "difficulty": "Easy",
-    "tags": ["binary-search"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/first-bad-version/",
-    "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "BS-E-004",
-    "title": "Guess Number Higher or Lower",
-    "topic": "BinarySearch",
-    "difficulty": "Easy",
-    "tags": ["binary-search", "interactive"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/guess-number-higher-or-lower/",
-    "estimated_solving_time": 10
-  },
-  {
-    "problem_id": "BS-E-005",
-    "title": "Sqrt(x)",
-    "topic": "BinarySearch",
-    "difficulty": "Easy",
-    "tags": ["binary-search", "math"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/sqrtx/",
-    "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "BS-M-001",
-    "title": "Search in Rotated Sorted Array",
-    "topic": "BinarySearch",
-    "difficulty": "Medium",
-    "tags": ["binary-search", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
-    "estimated_solving_time": 30
-  },
-  {
-    "problem_id": "BS-M-002",
-    "title": "Find Peak Element",
-    "topic": "BinarySearch",
-    "difficulty": "Medium",
-    "tags": ["binary-search", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/find-peak-element/",
-    "estimated_solving_time": 25
-  },
-  {
-    "problem_id": "BS-M-003",
-    "title": "Find First and Last Position of Element in Sorted Array",
-    "topic": "BinarySearch",
-    "difficulty": "Medium",
-    "tags": ["binary-search", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
-    "estimated_solving_time": 30
-  },
-  {
-    "problem_id": "BS-M-004",
-    "title": "Koko Eating Bananas",
-    "topic": "BinarySearch",
-    "difficulty": "Medium",
-    "tags": ["binary-search", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/koko-eating-bananas/",
-    "estimated_solving_time": 35
-  },
-  {
-    "problem_id": "BS-M-005",
-    "title": "Search a 2D Matrix",
-    "topic": "BinarySearch",
-    "difficulty": "Medium",
-    "tags": ["binary-search", "matrix"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/search-a-2d-matrix/",
-    "estimated_solving_time": 25
-  },
-  {
-    "problem_id": "TR-E-001",
-    "title": "Maximum Depth of Binary Tree",
-    "topic": "Trees",
-    "difficulty": "Easy",
-    "tags": ["dfs", "bfs", "tree", "recursion"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
-    "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "TR-E-002",
-    "title": "Invert Binary Tree",
-    "topic": "Trees",
-    "difficulty": "Easy",
-    "tags": ["dfs", "tree", "recursion"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/invert-binary-tree/",
-    "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "TR-E-003",
-    "title": "Symmetric Tree",
-    "topic": "Trees",
-    "difficulty": "Easy",
-    "tags": ["dfs", "bfs", "tree"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/symmetric-tree/",
-    "estimated_solving_time": 20
-  },
-  {
-    "problem_id": "TR-E-004",
-    "title": "Path Sum",
-    "topic": "Trees",
-    "difficulty": "Easy",
-    "tags": ["dfs", "tree", "recursion"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/path-sum/",
-    "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "TR-E-005",
-    "title": "Merge Two Binary Trees",
-    "topic": "Trees",
-    "difficulty": "Easy",
-    "tags": ["dfs", "tree", "recursion"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/merge-two-binary-trees/",
-    "estimated_solving_time": 15
   },
   {
     "problem_id": "TR-M-001",
     "title": "Binary Tree Level Order Traversal",
     "topic": "Trees",
     "difficulty": "Medium",
-    "tags": ["bfs", "tree"],
+    "tags": [
+      "bfs",
+      "tree"
+    ],
     "platform": "LeetCode",
     "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
     "estimated_solving_time": 25
-  },
-  {
-    "problem_id": "TR-M-002",
-    "title": "Validate Binary Search Tree",
-    "topic": "Trees",
-    "difficulty": "Medium",
-    "tags": ["dfs", "tree", "bst"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/validate-binary-search-tree/",
-    "estimated_solving_time": 30
-  },
-  {
-    "problem_id": "TR-M-003",
-    "title": "Lowest Common Ancestor of a Binary Search Tree",
-    "topic": "Trees",
-    "difficulty": "Medium",
-    "tags": ["tree", "bst", "recursion"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",
-    "estimated_solving_time": 25
-  },
-  {
-    "problem_id": "TR-M-004",
-    "title": "Construct Binary Tree from Preorder and Inorder Traversal",
-    "topic": "Trees",
-    "difficulty": "Medium",
-    "tags": ["tree", "hash-map", "recursion", "divide-and-conquer"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
-    "estimated_solving_time": 35
   },
   {
     "problem_id": "TR-M-005",
     "title": "Binary Tree Right Side View",
     "topic": "Trees",
     "difficulty": "Medium",
-    "tags": ["bfs", "dfs", "tree"],
+    "tags": [
+      "bfs",
+      "dfs",
+      "tree"
+    ],
     "platform": "LeetCode",
     "url": "https://leetcode.com/problems/binary-tree-right-side-view/",
     "estimated_solving_time": 25
-  },
-  {
-    "problem_id": "GR-E-001",
-    "title": "Find if Path Exists in Graph",
-    "topic": "Graphs",
-    "difficulty": "Easy",
-    "tags": ["bfs", "dfs", "union-find", "graph"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/find-if-path-exists-in-graph/",
-    "estimated_solving_time": 20
-  },
-  {
-    "problem_id": "GR-E-002",
-    "title": "Flood Fill",
-    "topic": "Graphs",
-    "difficulty": "Easy",
-    "tags": ["bfs", "dfs", "matrix"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/flood-fill/",
-    "estimated_solving_time": 20
-  },
-  {
-    "problem_id": "GR-E-003",
-    "title": "Island Perimeter",
-    "topic": "Graphs",
-    "difficulty": "Easy",
-    "tags": ["array", "matrix", "graph"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/island-perimeter/",
-    "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "GR-E-004",
-    "title": "Number of Provinces",
-    "topic": "Graphs",
-    "difficulty": "Easy",
-    "tags": ["dfs", "union-find", "graph"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/number-of-provinces/",
-    "estimated_solving_time": 20
-  },
-  {
-    "problem_id": "GR-E-005",
-    "title": "Find the Town Judge",
-    "topic": "Graphs",
-    "difficulty": "Easy",
-    "tags": ["graph", "array", "hash-map"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/find-the-town-judge/",
-    "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "GR-M-001",
-    "title": "Number of Islands",
-    "topic": "Graphs",
-    "difficulty": "Medium",
-    "tags": ["bfs", "dfs", "union-find", "matrix"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/number-of-islands/",
-    "estimated_solving_time": 30
-  },
-  {
-    "problem_id": "GR-M-002",
-    "title": "Clone Graph",
-    "topic": "Graphs",
-    "difficulty": "Medium",
-    "tags": ["bfs", "dfs", "hash-map", "graph"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/clone-graph/",
-    "estimated_solving_time": 30
-  },
-  {
-    "problem_id": "GR-M-003",
-    "title": "Course Schedule",
-    "topic": "Graphs",
-    "difficulty": "Medium",
-    "tags": ["topological-sort", "dfs", "graph"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/course-schedule/",
-    "estimated_solving_time": 35
-  },
-  {
-    "problem_id": "GR-M-004",
-    "title": "Pacific Atlantic Water Flow",
-    "topic": "Graphs",
-    "difficulty": "Medium",
-    "tags": ["bfs", "dfs", "matrix"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/pacific-atlantic-water-flow/",
-    "estimated_solving_time": 40
-  },
-  {
-    "problem_id": "GR-M-005",
-    "title": "Rotting Oranges",
-    "topic": "Graphs",
-    "difficulty": "Medium",
-    "tags": ["bfs", "matrix"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/rotting-oranges/",
-    "estimated_solving_time": 30
   },
   {
     "problem_id": "DP-E-001",
     "title": "Climbing Stairs",
     "topic": "DP",
     "difficulty": "Easy",
-    "tags": ["dynamic-programming", "memoization", "math"],
+    "tags": [
+      "dynamic-programming",
+      "memoization",
+      "math"
+    ],
     "platform": "LeetCode",
     "url": "https://leetcode.com/problems/climbing-stairs/",
     "estimated_solving_time": 15
   },
   {
-    "problem_id": "DP-E-002",
-    "title": "House Robber",
-    "topic": "DP",
-    "difficulty": "Easy",
-    "tags": ["dynamic-programming", "array"],
+    "problem_id": "GR-M-002",
+    "title": "Clone Graph",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "tags": [
+      "bfs",
+      "dfs",
+      "hash-map",
+      "graph"
+    ],
     "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/house-robber/",
-    "estimated_solving_time": 20
-  },
-  {
-    "problem_id": "DP-E-003",
-    "title": "Min Cost Climbing Stairs",
-    "topic": "DP",
-    "difficulty": "Easy",
-    "tags": ["dynamic-programming", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/min-cost-climbing-stairs/",
-    "estimated_solving_time": 15
-  },
-  {
-    "problem_id": "DP-E-004",
-    "title": "N-th Tribonacci Number",
-    "topic": "DP",
-    "difficulty": "Easy",
-    "tags": ["dynamic-programming", "memoization", "math"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/n-th-tribonacci-number/",
-    "estimated_solving_time": 10
-  },
-  {
-    "problem_id": "DP-E-005",
-    "title": "Pascal's Triangle",
-    "topic": "DP",
-    "difficulty": "Easy",
-    "tags": ["dynamic-programming", "array"],
-    "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/pascals-triangle/",
-    "estimated_solving_time": 15
+    "url": "https://leetcode.com/problems/clone-graph/",
+    "estimated_solving_time": 30
   },
   {
     "problem_id": "DP-M-001",
     "title": "Coin Change",
     "topic": "DP",
     "difficulty": "Medium",
-    "tags": ["dynamic-programming", "breadth-first-search"],
+    "tags": [
+      "dynamic-programming",
+      "breadth-first-search"
+    ],
     "platform": "LeetCode",
     "url": "https://leetcode.com/problems/coin-change/",
     "estimated_solving_time": 35
   },
   {
-    "problem_id": "DP-M-002",
-    "title": "Longest Increasing Subsequence",
-    "topic": "DP",
+    "problem_id": "TR-M-004",
+    "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+    "topic": "Trees",
     "difficulty": "Medium",
-    "tags": ["dynamic-programming", "binary-search"],
+    "tags": [
+      "tree",
+      "hash-map",
+      "recursion",
+      "divide-and-conquer"
+    ],
     "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/longest-increasing-subsequence/",
+    "url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
+    "estimated_solving_time": 35
+  },
+  {
+    "problem_id": "ARR-M-004",
+    "title": "Container With Most Water",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "tags": [
+      "two-pointers",
+      "greedy"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/container-with-most-water/",
+    "estimated_solving_time": 25
+  },
+  {
+    "problem_id": "ARR-E-003",
+    "title": "Contains Duplicate",
+    "topic": "Arrays",
+    "difficulty": "Easy",
+    "tags": [
+      "hash-set",
+      "array",
+      "sorting"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/contains-duplicate/",
+    "estimated_solving_time": 10
+  },
+  {
+    "problem_id": "GR-M-003",
+    "title": "Course Schedule",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "tags": [
+      "topological-sort",
+      "dfs",
+      "graph"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/course-schedule/",
+    "estimated_solving_time": 35
+  },
+  {
+    "problem_id": "BS-M-003",
+    "title": "Find First and Last Position of Element in Sorted Array",
+    "topic": "BinarySearch",
+    "difficulty": "Medium",
+    "tags": [
+      "binary-search",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/",
+    "estimated_solving_time": 30
+  },
+  {
+    "problem_id": "GR-E-001",
+    "title": "Find if Path Exists in Graph",
+    "topic": "Graphs",
+    "difficulty": "Easy",
+    "tags": [
+      "bfs",
+      "dfs",
+      "union-find",
+      "graph"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/find-if-path-exists-in-graph/",
+    "estimated_solving_time": 20
+  },
+  {
+    "problem_id": "BS-H-001",
+    "title": "Find Minimum in Rotated Sorted Array II",
+    "topic": "BinarySearch",
+    "difficulty": "Hard",
+    "tags": [
+      "binary-search",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/",
+    "estimated_solving_time": 35
+  },
+  {
+    "problem_id": "BS-M-002",
+    "title": "Find Peak Element",
+    "topic": "BinarySearch",
+    "difficulty": "Medium",
+    "tags": [
+      "binary-search",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/find-peak-element/",
+    "estimated_solving_time": 25
+  },
+  {
+    "problem_id": "GR-E-005",
+    "title": "Find the Town Judge",
+    "topic": "Graphs",
+    "difficulty": "Easy",
+    "tags": [
+      "graph",
+      "array",
+      "hash-map"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/find-the-town-judge/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "BS-E-003",
+    "title": "First Bad Version",
+    "topic": "BinarySearch",
+    "difficulty": "Easy",
+    "tags": [
+      "binary-search"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/first-bad-version/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "GR-E-002",
+    "title": "Flood Fill",
+    "topic": "Graphs",
+    "difficulty": "Easy",
+    "tags": [
+      "bfs",
+      "dfs",
+      "matrix"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/flood-fill/",
+    "estimated_solving_time": 20
+  },
+  {
+    "problem_id": "ARR-M-006",
+    "title": "Four Sum",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "two pointer"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/4sum/description/",
+    "estimated_solving_time": 30
+  },
+  {
+    "problem_id": "BS-E-004",
+    "title": "Guess Number Higher or Lower",
+    "topic": "BinarySearch",
+    "difficulty": "Easy",
+    "tags": [
+      "binary-search",
+      "interactive"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/guess-number-higher-or-lower/",
+    "estimated_solving_time": 10
+  },
+  {
+    "problem_id": "DP-E-002",
+    "title": "House Robber",
+    "topic": "DP",
+    "difficulty": "Easy",
+    "tags": [
+      "dynamic-programming",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/house-robber/",
+    "estimated_solving_time": 20
+  },
+  {
+    "problem_id": "TR-E-002",
+    "title": "Invert Binary Tree",
+    "topic": "Trees",
+    "difficulty": "Easy",
+    "tags": [
+      "dfs",
+      "tree",
+      "recursion"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/invert-binary-tree/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "GR-E-003",
+    "title": "Island Perimeter",
+    "topic": "Graphs",
+    "difficulty": "Easy",
+    "tags": [
+      "array",
+      "matrix",
+      "graph"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/island-perimeter/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "BS-M-004",
+    "title": "Koko Eating Bananas",
+    "topic": "BinarySearch",
+    "difficulty": "Medium",
+    "tags": [
+      "binary-search",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/koko-eating-bananas/",
     "estimated_solving_time": 35
   },
   {
@@ -474,29 +356,407 @@
     "title": "Longest Common Subsequence",
     "topic": "DP",
     "difficulty": "Medium",
-    "tags": ["dynamic-programming", "string"],
+    "tags": [
+      "dynamic-programming",
+      "string"
+    ],
     "platform": "LeetCode",
     "url": "https://leetcode.com/problems/longest-common-subsequence/",
     "estimated_solving_time": 35
   },
   {
-    "problem_id": "DP-M-004",
-    "title": "Word Break",
+    "problem_id": "DP-M-002",
+    "title": "Longest Increasing Subsequence",
     "topic": "DP",
     "difficulty": "Medium",
-    "tags": ["dynamic-programming", "hash-set", "string"],
+    "tags": [
+      "dynamic-programming",
+      "binary-search"
+    ],
     "platform": "LeetCode",
-    "url": "https://leetcode.com/problems/word-break/",
+    "url": "https://leetcode.com/problems/longest-increasing-subsequence/",
+    "estimated_solving_time": 35
+  },
+  {
+    "problem_id": "TR-M-003",
+    "title": "Lowest Common Ancestor of a Binary Search Tree",
+    "topic": "Trees",
+    "difficulty": "Medium",
+    "tags": [
+      "tree",
+      "bst",
+      "recursion"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",
+    "estimated_solving_time": 25
+  },
+  {
+    "problem_id": "TR-E-001",
+    "title": "Maximum Depth of Binary Tree",
+    "topic": "Trees",
+    "difficulty": "Easy",
+    "tags": [
+      "dfs",
+      "bfs",
+      "tree",
+      "recursion"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "ARR-M-003",
+    "title": "Maximum Product Subarray",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "tags": [
+      "dynamic-programming",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/maximum-product-subarray/",
     "estimated_solving_time": 30
+  },
+  {
+    "problem_id": "ARR-H-001",
+    "title": "Median of Two Sorted Arrays",
+    "topic": "Arrays",
+    "difficulty": "Hard",
+    "tags": [
+      "binary-search",
+      "array",
+      "divide-and-conquer"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/median-of-two-sorted-arrays/",
+    "estimated_solving_time": 45
+  },
+  {
+    "problem_id": "TR-E-005",
+    "title": "Merge Two Binary Trees",
+    "topic": "Trees",
+    "difficulty": "Easy",
+    "tags": [
+      "dfs",
+      "tree",
+      "recursion"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/merge-two-binary-trees/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "DP-E-003",
+    "title": "Min Cost Climbing Stairs",
+    "topic": "DP",
+    "difficulty": "Easy",
+    "tags": [
+      "dynamic-programming",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/min-cost-climbing-stairs/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "GR-H-001",
+    "title": "Minimum Cost to Connect All Points",
+    "topic": "Graphs",
+    "difficulty": "Hard",
+    "tags": [
+      "graph",
+      "minimum-spanning-tree",
+      "heap"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/min-cost-to-connect-all-points/",
+    "estimated_solving_time": 40
+  },
+  {
+    "problem_id": "ARR-E-004",
+    "title": "Move Zeroes",
+    "topic": "Arrays",
+    "difficulty": "Easy",
+    "tags": [
+      "two-pointers",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/move-zeroes/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "DP-E-004",
+    "title": "N-th Tribonacci Number",
+    "topic": "DP",
+    "difficulty": "Easy",
+    "tags": [
+      "dynamic-programming",
+      "memoization",
+      "math"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/n-th-tribonacci-number/",
+    "estimated_solving_time": 10
+  },
+  {
+    "problem_id": "GR-M-001",
+    "title": "Number of Islands",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "tags": [
+      "bfs",
+      "dfs",
+      "union-find",
+      "matrix"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-islands/",
+    "estimated_solving_time": 30
+  },
+  {
+    "problem_id": "GR-E-004",
+    "title": "Number of Provinces",
+    "topic": "Graphs",
+    "difficulty": "Easy",
+    "tags": [
+      "dfs",
+      "union-find",
+      "graph"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/number-of-provinces/",
+    "estimated_solving_time": 20
+  },
+  {
+    "problem_id": "GR-M-004",
+    "title": "Pacific Atlantic Water Flow",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "tags": [
+      "bfs",
+      "dfs",
+      "matrix"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/pacific-atlantic-water-flow/",
+    "estimated_solving_time": 40
+  },
+  {
+    "problem_id": "DP-E-005",
+    "title": "Pascal's Triangle",
+    "topic": "DP",
+    "difficulty": "Easy",
+    "tags": [
+      "dynamic-programming",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/pascals-triangle/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "TR-E-004",
+    "title": "Path Sum",
+    "topic": "Trees",
+    "difficulty": "Easy",
+    "tags": [
+      "dfs",
+      "tree",
+      "recursion"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/path-sum/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "ARR-M-002",
+    "title": "Product of Array Except Self",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "tags": [
+      "prefix-sum",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/product-of-array-except-self/",
+    "estimated_solving_time": 30
+  },
+  {
+    "problem_id": "GR-M-005",
+    "title": "Rotting Oranges",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "tags": [
+      "bfs",
+      "matrix"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/rotting-oranges/",
+    "estimated_solving_time": 30
+  },
+  {
+    "problem_id": "ARR-E-005",
+    "title": "Running Sum of 1d Array",
+    "topic": "Arrays",
+    "difficulty": "Easy",
+    "tags": [
+      "prefix-sum",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/running-sum-of-1d-array/",
+    "estimated_solving_time": 10
+  },
+  {
+    "problem_id": "BS-M-005",
+    "title": "Search a 2D Matrix",
+    "topic": "BinarySearch",
+    "difficulty": "Medium",
+    "tags": [
+      "binary-search",
+      "matrix"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/search-a-2d-matrix/",
+    "estimated_solving_time": 25
+  },
+  {
+    "problem_id": "BS-M-001",
+    "title": "Search in Rotated Sorted Array",
+    "topic": "BinarySearch",
+    "difficulty": "Medium",
+    "tags": [
+      "binary-search",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+    "estimated_solving_time": 30
+  },
+  {
+    "problem_id": "BS-E-002",
+    "title": "Search Insert Position",
+    "topic": "BinarySearch",
+    "difficulty": "Easy",
+    "tags": [
+      "binary-search",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/search-insert-position/",
+    "estimated_solving_time": 10
+  },
+  {
+    "problem_id": "TR-H-001",
+    "title": "Serialize and Deserialize Binary Tree",
+    "topic": "Trees",
+    "difficulty": "Hard",
+    "tags": [
+      "tree",
+      "dfs",
+      "bfs"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
+    "estimated_solving_time": 40
+  },
+  {
+    "problem_id": "BS-E-005",
+    "title": "Sqrt(x)",
+    "topic": "BinarySearch",
+    "difficulty": "Easy",
+    "tags": [
+      "binary-search",
+      "math"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/sqrtx/",
+    "estimated_solving_time": 15
+  },
+  {
+    "problem_id": "ARR-M-005",
+    "title": "Subarray Sum Equals K",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "tags": [
+      "prefix-sum",
+      "hash-map",
+      "array"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/subarray-sum-equals-k/",
+    "estimated_solving_time": 35
+  },
+  {
+    "problem_id": "TR-E-003",
+    "title": "Symmetric Tree",
+    "topic": "Trees",
+    "difficulty": "Easy",
+    "tags": [
+      "dfs",
+      "bfs",
+      "tree"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/symmetric-tree/",
+    "estimated_solving_time": 20
   },
   {
     "problem_id": "DP-M-005",
     "title": "Unique Paths",
     "topic": "DP",
     "difficulty": "Medium",
-    "tags": ["dynamic-programming", "math", "combinatorics"],
+    "tags": [
+      "dynamic-programming",
+      "math",
+      "combinatorics"
+    ],
     "platform": "LeetCode",
     "url": "https://leetcode.com/problems/unique-paths/",
     "estimated_solving_time": 25
+  },
+  {
+    "problem_id": "TR-M-002",
+    "title": "Validate Binary Search Tree",
+    "topic": "Trees",
+    "difficulty": "Medium",
+    "tags": [
+      "dfs",
+      "tree",
+      "bst"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/validate-binary-search-tree/",
+    "estimated_solving_time": 30
+  },
+  {
+    "problem_id": "DP-M-004",
+    "title": "Word Break",
+    "topic": "DP",
+    "difficulty": "Medium",
+    "tags": [
+      "dynamic-programming",
+      "hash-set",
+      "string"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/word-break/",
+    "estimated_solving_time": 30
+  },
+  {
+    "problem_id": "DP-H-001",
+    "title": "Longest Valid Paranthesis",
+    "topic": "DP",
+    "difficulty": "Hard",
+    "tags": [
+      "DP",
+      "Stack"
+    ],
+    "platform": "LeetCode",
+    "url": "https://leetcode.com/problems/longest-valid-parentheses/description/?envType=problem-list-v2&envId=dynamic-programming",
+    "estimated_solving_time": 45
   }
 ]

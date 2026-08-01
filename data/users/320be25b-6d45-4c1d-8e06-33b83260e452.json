@@ -1,14 +1,18 @@
 {
   "user_id": "320be25b-6d45-4c1d-8e06-33b83260e452",
-  "last_updated": "2026-07-09T20:21:47.819899+00:00",
+  "last_updated": "2026-08-01T07:26:57.083482+00:00",
   "bandit_state": {
     "Arrays_Easy": {
-      "alpha": 5,
+      "alpha": 7,
       "beta": 4
     },
     "Arrays_Medium": {
       "alpha": 2,
       "beta": 6
+    },
+    "Arrays_Hard": {
+      "alpha": 2,
+      "beta": 1
     },
     "BinarySearch_Easy": {
       "alpha": 8,
@@ -16,7 +20,11 @@
     },
     "BinarySearch_Medium": {
       "alpha": 3,
-      "beta": 6
+      "beta": 7
+    },
+    "BinarySearch_Hard": {
+      "alpha": 1,
+      "beta": 2
     },
     "Trees_Easy": {
       "alpha": 2,
@@ -26,21 +34,45 @@
       "alpha": 2,
       "beta": 7
     },
+    "Trees_Hard": {
+      "alpha": 1,
+      "beta": 9
+    },
     "Graphs_Easy": {
-      "alpha": 9,
+      "alpha": 11,
       "beta": 2
     },
     "Graphs_Medium": {
       "alpha": 6,
       "beta": 5
     },
+    "Graphs_Hard": {
+      "alpha": 1,
+      "beta": 2
+    },
     "DP_Easy": {
-      "alpha": 9,
-      "beta": 3
+      "alpha": 10,
+      "beta": 4
     },
     "DP_Medium": {
-      "alpha": 3,
-      "beta": 5
+      "alpha": 4,
+      "beta": 4
+    },
+    "DP_Hard": {
+      "alpha": 1,
+      "beta": 3
+    },
+    "Greedy_Easy": {
+      "alpha": 1,
+      "beta": 1
+    },
+    "Greedy_Medium": {
+      "alpha": 1,
+      "beta": 1
+    },
+    "Greedy_Hard": {
+      "alpha": 2,
+      "beta": 6
     }
   },
   "recommendation_history": [
@@ -64,6 +96,52 @@
     "Arrays_Easy",
     "Arrays_Medium",
     "DP_Easy",
-    "Graphs_Medium"
+    "Graphs_Medium",
+    "Trees_Easy",
+    "DP_Easy",
+    "BinarySearch_Easy",
+    "Graphs_Easy",
+    "Arrays_Easy",
+    "DP_Medium",
+    "Graphs_Medium",
+    "BinarySearch_Easy",
+    "Graphs_Medium",
+    "Graphs_Hard",
+    "Trees_Medium",
+    "Arrays_Easy",
+    "BinarySearch_Hard",
+    "Graphs_Medium",
+    "BinarySearch_Hard",
+    "DP_Medium",
+    "Trees_Hard",
+    "BinarySearch_Easy",
+    "Graphs_Easy",
+    "BinarySearch_Medium",
+    "DP_Easy",
+    "BinarySearch_Hard",
+    "DP_Hard",
+    "DP_Hard",
+    "Arrays_Easy",
+    "Graphs_Hard",
+    "DP_Easy",
+    "Graphs_Easy",
+    "Arrays_Easy",
+    "BinarySearch_Medium",
+    "DP_Easy",
+    "Graphs_Medium",
+    "BinarySearch_Hard",
+    "Arrays_Easy",
+    "DP_Easy",
+    "Trees_Hard",
+    "Greedy_Easy",
+    "Graphs_Medium",
+    "Greedy_Medium",
+    "DP_Easy",
+    "Graphs_Easy",
+    "Arrays_Easy",
+    "Graphs_Medium",
+    "DP_Medium",
+    "Graphs_Easy",
+    "Arrays_Hard"
   ]
 }

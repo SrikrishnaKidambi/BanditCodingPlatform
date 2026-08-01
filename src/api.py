@@ -50,6 +50,13 @@ class SubmitRequest(BaseModel):
     solved: bool
 
 
+class ResetArmRequest(BaseModel):
+    user_id: str
+    topic: str
+    difficulty: str
+    rating: int  # 1–4
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
@@ -170,6 +177,66 @@ def stats(user_id: str):
         "weakest":   [f"{a[0]}-{a[1]}" for a in profile.weakest_arms(3)],
         "strongest": [f"{a[0]}-{a[1]}" for a in profile.strongest_arms(3)],
     }
+
+
+@app.post("/reset/{user_id}")
+def reset_user(user_id: str):
+    _bandits.pop(user_id, None)
+    _seen_ids.pop(user_id, None)
+    session = UserSession(user_id)
+    session.delete()
+    return {"status": "ok"}
+
+
+@app.post("/reset-arm")
+def reset_arm(req: ResetArmRequest):
+    bandit = _get_or_load_bandit(req.user_id)
+    arm = (req.topic, req.difficulty)
+    if arm not in bandit.banditState:
+        raise HTTPException(status_code=400, detail=f"Unknown arm: {arm}")
+    cold_start = ColdStartAssessment()
+    level = cold_start.levels[req.rating]
+    bandit.banditState[arm] = {"alpha": level["alpha"], "beta": level["beta"]}
+    session = UserSession(req.user_id)
+    session.save(bandit.banditState, bandit.recommendation_history)
+    return {"status": "ok"}
+
+
+@app.post("/admin/reload-topics")
+def reload_topics():
+    """Reload topics from data/topics.json and update in-memory modules.
+
+    This endpoint lets the backend trigger a hot-reload so the running
+    recommendation service picks up new topics without a full restart.
+    """
+    try:
+        from topic_registry import load_topics
+        new_topics = load_topics()
+
+        # Update modules that cache topics at import-time
+        try:
+            import coldstart
+            coldstart.TOPICS = new_topics
+        except Exception:
+            pass
+        try:
+            import competency
+            competency.TOPICS = new_topics
+        except Exception:
+            pass
+
+        # Update existing Bandit instances so they include new arms
+        for user_id, bandit in list(_bandits.items()):
+            new_arms = [(t, d) for t in new_topics for d in ["Easy", "Medium", "Hard"]]
+            bandit.arms = new_arms
+            # Ensure banditState contains entries for new arms with a neutral prior
+            for arm in new_arms:
+                if arm not in bandit.banditState:
+                    bandit.banditState[arm] = {"alpha": 1, "beta": 1}
+
+        return {"status": "ok", "topics": new_topics}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 if __name__ == "__main__":

@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { recommendAPI } from '../services/api'
+import { recommendAPI, topicsAPI } from '../services/api'
 import SkyBackground from '../components/SkyBackground'
 
-const TOPICS = ['Arrays', 'BinarySearch', 'Trees', 'Graphs', 'DP']
-const DIFFICULTIES = ['Easy', 'Medium']
+const DEFAULT_TOPICS = ['Arrays', 'BinarySearch', 'Trees', 'Graphs', 'DP']
+const DIFFICULTIES = ['Easy', 'Medium', 'Hard']
 const LEVELS = [
   { value: 1, label: 'Never tried',  desc: '~10% success rate' },
   { value: 2, label: 'Beginner',     desc: '~25% success rate' },
@@ -12,17 +12,31 @@ const LEVELS = [
   { value: 4, label: 'Advanced',     desc: '~80% success rate' },
 ]
 
-const diffColor = { Easy: 'text-green-400', Medium: 'text-yellow-400' }
+const diffColor = { Easy: 'text-green-400', Medium: 'text-yellow-400', Hard: 'text-red-400' }
 
 export default function ColdStart() {
   const navigate  = useNavigate()
 
-  const initial = {}
-  TOPICS.forEach(t => DIFFICULTIES.forEach(d => { initial[`${t}_${d}`] = 2 }))
+  const [topics, setTopics] = useState(DEFAULT_TOPICS)
+  const [ratings, setRatings] = useState({})
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
-  const [ratings, setRatings]   = useState(initial)
-  const [loading, setLoading]   = useState(false)
-  const [error, setError]       = useState('')
+  useEffect(() => {
+    topicsAPI.get()
+      .then(({ data }) => {
+        const nextTopics = Array.isArray(data?.topics) && data.topics.length > 0 ? data.topics : DEFAULT_TOPICS
+        setTopics(nextTopics)
+        const initial = {}
+        nextTopics.forEach(t => DIFFICULTIES.forEach(d => { initial[`${t}_${d}`] = 2 }))
+        setRatings(initial)
+      })
+      .catch(() => {
+        const initial = {}
+        DEFAULT_TOPICS.forEach(t => DIFFICULTIES.forEach(d => { initial[`${t}_${d}`] = 2 }))
+        setRatings(initial)
+      })
+  }, [])
 
   function set(key, value) {
     setRatings(prev => ({ ...prev, [key]: Number(value) }))
@@ -61,7 +75,7 @@ export default function ColdStart() {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            {TOPICS.map(topic => (
+            {topics.map(topic => (
               <div key={topic}>
                 <h3 className="text-sm font-semibold text-white mb-3">{topic}</h3>
                 <div className="space-y-3 pl-2">

@@ -1,5 +1,7 @@
-TOPICS = ["Arrays", "BinarySearch", "Trees", "Graphs", "DP"]
-DIFFICULTIES = ["Easy", "Medium"]
+from topic_registry import load_topics
+
+TOPICS = load_topics()
+DIFFICULTIES = ["Easy", "Medium", "Hard"]
 
 # Each level maps to an (alpha, beta) prior.
 # Prior mean = alpha / (alpha + beta)
@@ -15,7 +17,7 @@ LEVELS = {
 
 class ColdStartAssessment:
     def __init__(self):
-        self.topics = TOPICS
+        self.topics = load_topics()
         self.difficulties = DIFFICULTIES
         self.levels = LEVELS
 
@@ -70,40 +72,41 @@ class ColdStartAssessment:
 
     def propagate_topic_hierarchy(self, priors):
         """
-        Adjusts Medium priors using Easy mastery for the same topic.
+        Adjusts higher-difficulty priors using the previous-difficulty mastery for the same topic.
 
         Rationale: if a user rates Arrays-Easy as Advanced but Arrays-Medium as
         Beginner, the Easy mastery is informative — they are likely more ready for
-        Medium than a pure Beginner. We blend 25% Easy signal into the Medium prior.
-        Only applies when Easy mean > Medium mean (never penalises a higher Medium rating).
+        Medium than a pure Beginner. We blend 25% predecessor signal into the successor prior.
+        Only applies when the predecessor mean is higher than the successor mean.
         """
-        EASY_WEIGHT = 0.25
+        PREDECESSOR_WEIGHT = 0.25
         adjusted = dict(priors)
 
         for topic in self.topics:
-            easy_arm = (topic, "Easy")
-            medium_arm = (topic, "Medium")
+            for predecessor, successor in [("Easy", "Medium"), ("Medium", "Hard")]:
+                predecessor_arm = (topic, predecessor)
+                successor_arm = (topic, successor)
 
-            if easy_arm not in priors or medium_arm not in priors:
-                continue
+                if predecessor_arm not in priors or successor_arm not in priors:
+                    continue
 
-            easy_state  = priors[easy_arm]
-            medium_state = priors[medium_arm]
+                predecessor_state = priors[predecessor_arm]
+                successor_state = priors[successor_arm]
 
-            easy_mean   = easy_state["alpha"]   / (easy_state["alpha"]   + easy_state["beta"])
-            medium_mean = medium_state["alpha"]  / (medium_state["alpha"] + medium_state["beta"])
+                predecessor_mean = predecessor_state["alpha"] / (predecessor_state["alpha"] + predecessor_state["beta"])
+                successor_mean = successor_state["alpha"] / (successor_state["alpha"] + successor_state["beta"])
 
-            # Only propagate upward — Easy cannot pull Medium below its rated value
-            if easy_mean <= medium_mean:
-                continue
+                # Only propagate upward — the predecessor cannot pull the successor below its rated value
+                if predecessor_mean <= successor_mean:
+                    continue
 
-            blended_mean = EASY_WEIGHT * easy_mean + (1 - EASY_WEIGHT) * medium_mean
-            total_obs    = medium_state["alpha"] + medium_state["beta"]
+                blended_mean = PREDECESSOR_WEIGHT * predecessor_mean + (1 - PREDECESSOR_WEIGHT) * successor_mean
+                total_obs = successor_state["alpha"] + successor_state["beta"]
 
-            new_alpha = max(1, round(blended_mean * total_obs))
-            new_beta  = max(1, total_obs - new_alpha)
+                new_alpha = max(1, round(blended_mean * total_obs))
+                new_beta = max(1, total_obs - new_alpha)
 
-            adjusted[medium_arm] = {"alpha": new_alpha, "beta": new_beta}
+                adjusted[successor_arm] = {"alpha": new_alpha, "beta": new_beta}
 
         return adjusted
 

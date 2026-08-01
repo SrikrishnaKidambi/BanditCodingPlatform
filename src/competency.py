@@ -1,4 +1,6 @@
-TOPICS = ["Arrays", "BinarySearch", "Trees", "Graphs", "DP"]
+from topic_registry import load_topics
+
+TOPICS = load_topics()
 
 # Posterior mean thresholds for tier classification
 TIERS = [
@@ -7,7 +9,7 @@ TIERS = [
     (0.00, "weak"),
 ]
 
-# Easy arm posterior mean above this marks the arm as ready to push toward Medium
+# A predecessor arm posterior mean above this marks the arm as ready to advance to the next difficulty
 PROGRESSION_THRESHOLD = 0.75
 
 
@@ -48,13 +50,18 @@ class CompetencyProfile:
 
     def ready_for_progression(self, arm):
         """
-        True when an Easy arm's mastery exceeds the progression threshold,
-        signalling the recommendation engine should favour the corresponding Medium arm.
+        True when an arm's predecessor difficulty exceeds the progression threshold,
+        signalling the recommendation engine should favour the next difficulty level.
         """
         topic, difficulty = arm
-        if difficulty != "Easy":
+        if difficulty == "Easy":
+            return self.posterior_mean(arm) >= PROGRESSION_THRESHOLD
+
+        predecessor_difficulty = "Easy" if difficulty == "Medium" else "Medium"
+        predecessor_arm = (topic, predecessor_difficulty)
+        if predecessor_arm not in self.state:
             return False
-        return self.posterior_mean(arm) >= PROGRESSION_THRESHOLD
+        return self.posterior_mean(predecessor_arm) >= PROGRESSION_THRESHOLD
 
     # ------------------------------------------------------------------
     # Profile & aggregates
@@ -97,7 +104,8 @@ class CompetencyProfile:
 
         profile = self.get_profile()
         for arm, data in sorted(profile.items(), key=lambda x: x[1]["mean"], reverse=True):
-            progression = "  [-> ready for Medium]" if data["ready_for_progression"] else ""
+            next_difficulty = "Medium" if arm[1] == "Easy" else "Hard" if arm[1] == "Medium" else None
+            progression = f"  [-> ready for {next_difficulty}]" if data["ready_for_progression"] and next_difficulty else ""
             print(
                 f"  {arm[0]}-{arm[1]:<12}"
                 f"  {data['mean']:.2f}"

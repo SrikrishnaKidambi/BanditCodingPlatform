@@ -4,6 +4,7 @@ import { userAPI } from '../services/api'
 const difficultyStyle = {
   Easy:   'text-green-700 bg-green-100 dark:bg-green-900/30 dark:text-green-400',
   Medium: 'text-yellow-700 bg-yellow-100 dark:bg-yellow-900/30 dark:text-yellow-400',
+  Hard:   'text-red-700 bg-red-100 dark:bg-red-900/30 dark:text-red-400',
 }
 const modeStyle = {
   learning: 'text-blue-700 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400',

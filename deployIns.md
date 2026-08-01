@@ -240,3 +240,135 @@ No environment variables required. If using Railway volume, ensure it is mounted
 | Backend | `http://localhost:3001` | `https://<app>.onrender.com` |
 | Python service | `http://localhost:8000` | `https://<app>.onrender.com` |
 | MySQL | `localhost:3306` | Railway internal host |
+| Admin | `http://localhost:3002` | `https://<admin-app>.vercel.app` |
+
+---
+
+## Admin Portal — Setup & Deployment
+
+The admin portal (`admin/`) is a separate React app that connects to the **same backend** as the main frontend.
+It lives on a different URL and port, and uses a separate `admins` DB table and JWT role (`"admin"`).
+
+### Local Development
+
+```bash
+# 1. Install admin dependencies
+cd admin
+npm install
+
+# 2. Create local env file
+cp .env.example .env
+# VITE_API_URL defaults to http://localhost:3001 — no changes needed locally
+
+# 3. Run admin app (port 3002)
+npm run dev
+# Open http://localhost:3002
+
+# 4. Register your first admin account at http://localhost:3002/login
+#    (the register form is on the login page)
+```
+
+> **Note:** The `admins` table is created automatically on the first backend request to `/admin/*`.
+> No manual SQL migration is needed.
+
+---
+
+### Admin Excel Import — Column Format
+
+When uploading questions via Excel (`.xlsx` or `.csv`), the file must have these columns in row 1.
+Column names are case-insensitive and accept both `snake_case` and `Title Case`.
+
+| Col | Header | Required | Format | Example |
+|-----|--------|----------|--------|---------|
+| A | `problem_id` | No (auto-generated) | Text | `ARR-E-010` |
+| B | `title` | **Yes** | Text | `Two Sum` |
+| C | `topic` | **Yes** | Text | `Arrays` |
+| D | `difficulty` | **Yes** | `Easy` or `Medium` | `Easy` |
+| E | `tags` | No | Comma-separated | `array, hash-map` |
+| F | `platform` | **Yes** | Text | `LeetCode` |
+| G | `url` | **Yes** | URL | `https://leetcode.com/…` |
+| H | `estimated_solving_time` | No (default 20) | Integer (minutes) | `15` |
+
+Auto-generated ID format: `{TOPIC_PREFIX}-{DIFF_PREFIX}-{NUM}`
+Examples: `ARR-E-010`, `BS-M-003`, `TR-E-007`, `GR-M-002`, `DP-E-005`
+
+---
+
+### Step 6a — Admin App → Vercel (Separate Deployment)
+
+1. Go to [vercel.com](https://vercel.com) → **Add New Project** → import same GitHub repo
+2. Configure:
+   ```
+   Framework Preset:  Vite
+   Root Directory:    admin
+   Build Command:     npm run build
+   Output Directory:  dist
+   ```
+3. Add environment variable:
+   ```
+   VITE_API_URL = <backend URL from Step 4>
+   ```
+   Example: `https://banditlearn-backend.onrender.com`
+   (no `/api` suffix — admin routes are at `/admin/*`)
+4. Click **Deploy**
+5. Vercel gives you a live URL e.g. `https://codecompass-admin.vercel.app`
+
+---
+
+### Step 6b — Restrict Admin CORS (Production)
+
+The backend must allow requests from both the main frontend and the admin app.
+Update `backend/server.js`:
+
+```js
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.ADMIN_URL,
+].filter(Boolean)
+
+app.use(cors({
+  origin: allowedOrigins.length > 0 ? allowedOrigins : '*'
+}))
+```
+
+Add to backend environment variables:
+```
+FRONTEND_URL = https://banditlearn.vercel.app
+ADMIN_URL    = https://codecompass-admin.vercel.app
+```
+
+---
+
+### Admin Security Notes
+
+- The `/admin/auth/register` endpoint is open by default to allow initial setup.
+  After creating your admin account, consider removing or IP-restricting the register route in `backend/routes/admin.js` for production.
+- Admin JWTs carry `role: "admin"` and are verified separately by `backend/middleware/adminAuth.js`.
+  A regular user token cannot access admin routes even if guessed.
+- Keep your admin URL private — it is not linked from the main app.
+
+---
+
+### Admin Smoke Test
+
+- [ ] Open admin URL → Login page loads with split-panel design
+- [ ] Register a new admin account → Dashboard loads
+- [ ] Questions tab → table of all questions visible
+- [ ] Add Questions → Manual form → submit a test question → appears in table
+- [ ] Add Questions → Excel Import → upload a sample `.xlsx` → preview shows, import succeeds
+- [ ] Topics tab → existing topics visible with question counts
+- [ ] Add a new topic → appears in the topics grid
+- [ ] Delete a test question → removed from table
+- [ ] Sign out → redirected to login
+
+---
+
+## Updated Local vs Deployed URLs
+
+| Service | Local | Deployed |
+|---|---|---|
+| Frontend | `http://localhost:5173` | `https://<app>.vercel.app` |
+| Admin | `http://localhost:3002` | `https://<admin>.vercel.app` |
+| Backend | `http://localhost:3001` | `https://<app>.onrender.com` |
+| Python service | `http://localhost:8000` | `https://<app>.onrender.com` |
+| MySQL | `localhost:3306` | Railway internal host |

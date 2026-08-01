@@ -9,6 +9,7 @@ import PracticeHistory from './pages/PracticeHistory'
 import TopicMastery from './pages/TopicMastery'
 import Analytics from './pages/Analytics'
 import Profile from './pages/Profile'
+import ResetArm from './pages/ResetArm'
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth()
@@ -28,6 +29,7 @@ function AppRoutes() {
         <Route path="/mastery"    element={<TopicMastery />} />
         <Route path="/analytics"  element={<Analytics />} />
         <Route path="/profile"    element={<Profile />} />
+        <Route path="/reset-arm"  element={<ResetArm />} />
       </Route>
     </Routes>
   )

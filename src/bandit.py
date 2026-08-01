@@ -1,22 +1,17 @@
 import numpy as np
 import random
 from competency import PROGRESSION_THRESHOLD
+from topic_registry import load_topics
 
 
 class Bandit:
     def __init__(self, initial_priors=None, recency_window=5, recency_penalty=0.5, diversity_pool=3,
                  recommendation_history=None):
+        topics = load_topics()
         self.arms = [
-            ("Arrays", "Easy"),
-            ("Arrays", "Medium"),
-            ("BinarySearch", "Easy"),
-            ("BinarySearch", "Medium"),
-            ("Trees", "Easy"),
-            ("Trees", "Medium"),
-            ("Graphs", "Easy"),
-            ("Graphs", "Medium"),
-            ("DP", "Easy"),
-            ("DP", "Medium")
+            (topic, difficulty)
+            for topic in topics
+            for difficulty in ["Easy", "Medium", "Hard"]
         ]
 
         # If cold-start priors are provided, seed each arm with them.
@@ -37,22 +32,25 @@ class Bandit:
 
     def _progression_bonus(self, arm):
         """
-        Returns a score bonus for a Medium arm whose Easy counterpart is mastered.
+        Returns a score bonus for a higher-difficulty arm whose predecessor is mastered.
         Scales linearly from 0 at the threshold to 0.25 at full mastery, nudging
         the learning zone selection toward advancing difficulty without hard-overriding
         Thompson Sampling.
         """
         topic, difficulty = arm
-        if difficulty != "Medium":
+        if difficulty == "Easy":
             return 0.0
-        easy_arm = (topic, "Easy")
-        if easy_arm not in self.banditState:
+
+        predecessor_difficulty = "Easy" if difficulty == "Medium" else "Medium"
+        predecessor_arm = (topic, predecessor_difficulty)
+        if predecessor_arm not in self.banditState:
             return 0.0
-        s = self.banditState[easy_arm]
-        easy_mean = s["alpha"] / (s["alpha"] + s["beta"])
-        if easy_mean < PROGRESSION_THRESHOLD:
+
+        s = self.banditState[predecessor_arm]
+        predecessor_mean = s["alpha"] / (s["alpha"] + s["beta"])
+        if predecessor_mean < PROGRESSION_THRESHOLD:
             return 0.0
-        return 0.25 * (easy_mean - PROGRESSION_THRESHOLD) / (1.0 - PROGRESSION_THRESHOLD)
+        return 0.25 * (predecessor_mean - PROGRESSION_THRESHOLD) / (1.0 - PROGRESSION_THRESHOLD)
 
     def _apply_recency_penalty(self, sampled_mastery):
         """
@@ -81,8 +79,8 @@ class Bandit:
         choice = np.random.random()
 
         # 70% learning zone: closest to 0.7 mastery (sweet spot for challenge).
-        # Medium arms whose Easy counterpart is mastered receive a progression bonus
-        # to bias selection toward advancing difficulty.
+        # Higher-difficulty arms whose predecessor counterpart is mastered receive a
+        # progression bonus to bias selection toward advancing difficulty.
         if choice < 0.7:
             scores = {
                 arm: -abs(m - 0.7) + self._progression_bonus(arm)

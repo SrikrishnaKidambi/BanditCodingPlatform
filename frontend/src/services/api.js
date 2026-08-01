@@ -35,6 +35,15 @@ export const recommendAPI = {
   assess: ratings                                                       => api.post('/assess', { ratings }),
 }
 
+export const topicsAPI = {
+  get: () => api.get('/topics'),
+}
+
+export const progressAPI = {
+  resetAll: ()                              => api.post('/progress/reset'),
+  resetArm: (topic, difficulty, rating)     => api.post('/progress/reset-arm', { topic, difficulty, rating }),
+}
+
 export const userAPI = {
   profile:    () => api.get('/profile'),
   history:    () => api.get('/history'),
